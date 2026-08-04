@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/tek-service-now/CopilotIndices/17.14.1641.39856
+/.vs/tek-service-now/FileContentIndex
+/.vs
+/files
