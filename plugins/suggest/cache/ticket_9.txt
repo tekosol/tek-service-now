@@ -1,0 +1,20 @@
+Here are the smart-matched Knowledge Base articles for your issue:
+
+📘 **Datbase offline**:
+
+
+📎 Attached Document (kb db offline.txt):
+step 1 check the connectivity 
+Step to bring db online.
+
+
+📘 **Datbase offline**:
+
+
+📎 Attached Document (database_offline.txt):
+Database Offline Troubleshooting:
+1. Verify if the MySQL service is running in Windows Services (services.msc).
+2. Check if the disk space is full on the D: drive where the database is stored.
+3. Try to bring the database task online if it is showing as stopped in the management console.
+4. Check the MySQL error logs for any 'Table is marked as crashed' messages.
+

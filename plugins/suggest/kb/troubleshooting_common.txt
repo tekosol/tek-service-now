@@ -1,0 +1,15 @@
+Database Offline Troubleshooting:
+1. Verify if the MySQL service is running in Windows Services (services.msc).
+2. Check if the disk space is full on the D: drive where the database is stored.
+3. Try to bring the database task online if it is showing as stopped in the management console.
+4. Check the MySQL error logs for any 'Table is marked as crashed' messages.
+---
+Network Connectivity Issues:
+1. Ping the server gateway to check local network health.
+2. Check if firewall rules are blocking port 443 or 80.
+3. Restart the network adapter if necessary.
+---
+Slow Performance:
+1. Monitor CPU and RAM usage in Task Manager.
+2. Check for runaway processes.
+3. Verify if disk I/O is saturated.

@@ -1,0 +1,22 @@
+Some optional system requirements are missing. Run the "php bin/console system:check_requirements" command for more details.
+
+In AbstractConfigureCommand.php line 414:
+                                                                  
+  [Symfony\Component\Console\Exception\InvalidArgumentException]  
+  --db-password option va                                         
+  lue cannot be null.                                             
+                                                                  
+
+Exception trace:
+  at C:\xampp\htdocs\glpi\src\Glpi\Console\Database\AbstractConfigureCommand.php:414
+ Glpi\Console\Database\AbstractConfigureCommand->validateConfigInput() at C:\xampp\htdocs\glpi\src\Glpi\Console\Database\AbstractConfigureCommand.php:215
+ Glpi\Console\Database\AbstractConfigureCommand->configureDatabase() at C:\xampp\htdocs\glpi\src\Glpi\Console\Database\InstallCommand.php:183
+ Glpi\Console\Database\InstallCommand->execute() at C:\xampp\htdocs\glpi\vendor\symfony\console\Command\Command.php:326
+ Symfony\Component\Console\Command\Command->run() at C:\xampp\htdocs\glpi\vendor\symfony\console\Application.php:1088
+ Symfony\Component\Console\Application->doRunCommand() at C:\xampp\htdocs\glpi\src\Glpi\Console\Application.php:330
+ Glpi\Console\Application->doRunCommand() at C:\xampp\htdocs\glpi\vendor\symfony\console\Application.php:324
+ Symfony\Component\Console\Application->doRun() at C:\xampp\htdocs\glpi\vendor\symfony\console\Application.php:175
+ Symfony\Component\Console\Application->run() at C:\xampp\htdocs\glpi\bin\console:144
+
+database:install [-H|--db-host [DB-HOST]] [-d|--db-name DB-NAME] [-p|--db-password [DB-PASSWORD]] [-P|--db-port [DB-PORT]] [-u|--db-user DB-USER] [-r|--reconfigure] [--strict-configuration] [-L|--default-language [DEFAULT-LANGUAGE]] [-f|--force] [--enable-telemetry] [--no-telemetry]
+

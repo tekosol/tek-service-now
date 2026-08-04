@@ -1,0 +1,6 @@
+Started: 2026-03-23 12:59:58
+Query: i have mssql DB that is offline
+Finished FS KB. Starting DB KB.
+Finished DB KB. Starting Ollama. Context length: 1156
+Executing cURL...
+cURL finished. Result bool: TRUE
