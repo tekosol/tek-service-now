@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ![GLPI Logo](https://raw.githubusercontent.com/glpi-project/glpi/main/public/pics/logos/logo-GLPI-250-black.png)
 
 ![GLPI CI](https://github.com/glpi-project/glpi/workflows/GLPI%20CI/badge.svg?branch=9.5%2Fbugfixes)
@@ -159,3 +160,7 @@ See :
 GLPI is a living software. Improvements are continuously made, new functionalities are being developed, and issues are being fixed.
 
 To ease support and development, we need your help when encountering issues.
+=======
+# tek-service-now
+Support Desk
+>>>>>>> 189fcf8b1b9b31459865dc1a0f2ecdd38cceb2cd
