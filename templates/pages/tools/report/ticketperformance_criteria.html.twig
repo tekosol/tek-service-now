@@ -1,0 +1,90 @@
+{% import 'components/form/fields_macros.html.twig' as fields %}
+{% if not embeded %}
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">{{ title }}</div>
+        </div>
+        <div class="card-body">
+{% endif %}
+<form method="get" action="report.ticketperformance.php" class="mt-n3">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            {{ fields.dateField('date1', filters.date1, __('Date From'), {
+                clearable: true,
+                mb: 'mb-3',
+            }) }}
+        </div>
+        <div class="col-12 col-md-6">
+            {{ fields.dateField('date2', filters.date2, __('Date To'), {
+                clearable: true,
+                mb: 'mb-3',
+            }) }}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12 col-md-4">
+            {{ fields.dropdownField('User', 'users_id_requester', filters.users_id_requester, __('Requester'), {
+                mb: 'mb-3',
+                right: 'all',
+                display_emptychoice: true,
+                emptylabel: __('All'),
+            }) }}
+        </div>
+        <div class="col-12 col-md-4">
+            {{ fields.dropdownField('User', 'users_id_assign', filters.users_id_assign, __('Assigned Technician'), {
+                mb: 'mb-3',
+                right: 'all',
+                display_emptychoice: true,
+                emptylabel: __('All'),
+            }) }}
+        </div>
+        <div class="col-12 col-md-4">
+            {{ fields.dropdownField('Group', 'groups_id_assign', filters.groups_id_assign, __('Assigned Group'), {
+                mb: 'mb-3',
+                display_emptychoice: true,
+                emptylabel: __('All'),
+            }) }}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12 col-md-4">
+            {{ fields.dropdownField('Entity', 'entities_id', filters.entities_id, __('Entity'), {
+                mb: 'mb-3',
+                display_emptychoice: true,
+                emptylabel: __('All'),
+            }) }}
+        </div>
+        <div class="col-12 col-md-4">
+            {{ fields.dropdownField('Location', 'locations_id', filters.locations_id, __('Location'), {
+                mb: 'mb-3',
+                display_emptychoice: true,
+                emptylabel: __('All'),
+            }) }}
+        </div>
+        <div class="col-12 col-md-4">
+            {{ fields.htmlField('priority', priority_dropdown, __('Priority'), {
+                mb: 'mb-3',
+            }) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-4">
+            {{ fields.htmlField('status', status_dropdown, __('Status'), {
+                mb: 'mb-3',
+            }) }}
+        </div>
+    </div>
+
+    <div class="d-flex flex-row-reverse mt-3">
+        <button type="submit" class="btn btn-primary" name="submit">
+            <i class="ti ti-search"></i> {{ btn_label }}
+        </button>
+    </div>
+</form>
+{% if not embeded %}
+        </div>
+    </div>
+{% endif %}

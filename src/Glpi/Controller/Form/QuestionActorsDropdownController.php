@@ -62,9 +62,22 @@ final class QuestionActorsDropdownController extends AbstractController
     {
         $this->checkFormAccessPolicies($request);
 
+        $right_for_users = $request->request->getString('right_for_users', 'all');
+
+        // Security: If the client claims the right is 'observer_selfservice' OR if we are
+        // on the helpdesk interface AND the allowed_types contain User, enforce the restriction
+        // server-side. This prevents a malicious user from changing the POST param to 'all'.
+        $allowed_types = $request->request->all('allowed_types');
+        if (Session::getCurrentInterface() === 'helpdesk' && in_array(\User::class, $allowed_types)) {
+            // Check if the requested right indicates an observer context
+            if (in_array($right_for_users, ['observer_selfservice', 'all'])) {
+                $right_for_users = 'observer_selfservice';
+            }
+        }
+
         $options = [
-            'allowed_types'    => $request->request->all('allowed_types'),
-            'right_for_users'  => $request->request->getString('right_for_users', 'all'),
+            'allowed_types'    => $allowed_types,
+            'right_for_users'  => $right_for_users,
             'group_conditions' => $request->request->all('group_conditions'),
             'page'             => $request->request->getInt('page', 1),
             'page_size'        => $request->request->getInt('page_limit', -1),

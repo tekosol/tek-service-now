@@ -3861,6 +3861,62 @@ HTML;
                 }
                 break;
 
+            case "observer_selfservice":
+                $groups = [];
+                if (isset($_SESSION['glpigroups'])) {
+                    $groups = $_SESSION['glpigroups'];
+                }
+                
+                // Get the Manager profile ID
+                $manager_profile_id = 0;
+                $manager_iter = $DB->request('glpi_profiles', ['name' => 'Manager']);
+                foreach ($manager_iter as $pdata) {
+                    $manager_profile_id = $pdata['id'];
+                }
+                
+                $users = [];
+                
+                // 1. Get users in the same groups as the logged-in user
+                if (count($groups)) {
+                    $iterator = $DB->request([
+                        'SELECT'    => 'glpi_users.id',
+                        'FROM'      => 'glpi_groups_users',
+                        'WHERE'     => [
+                            'glpi_groups_users.groups_id' => $groups,
+                            'glpi_groups_users.users_id'  => ['<>', Session::getLoginUserID()],
+                        ],
+                    ]);
+                    foreach ($iterator as $data) {
+                        $users[$data["id"]] = $data["id"];
+                    }
+                }
+                
+                // 2. Get users who have the Manager profile
+                if ($manager_profile_id > 0) {
+                    $iterator = $DB->request([
+                        'SELECT'    => 'users_id',
+                        'FROM'      => 'glpi_profiles_users',
+                        'WHERE'     => [
+                            'profiles_id' => $manager_profile_id,
+                            'users_id'    => ['<>', Session::getLoginUserID()],
+                        ],
+                    ]);
+                    foreach ($iterator as $data) {
+                        $users[$data["users_id"]] = $data["users_id"];
+                    }
+                }
+
+                // Add me to users list if I want to select myself? 
+                // Usually not needed for observer since you can just observe your own ticket by being requester.
+                // We'll leave it as requested.
+
+                if (count($users)) {
+                    $WHERE = ['glpi_users.id' => $users];
+                } else {
+                    $WHERE = ['0'];
+                }
+                break;
+
             case "groups":
                 $groups = [];
                 if (isset($_SESSION['glpigroups'])) {
