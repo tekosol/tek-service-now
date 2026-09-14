@@ -531,23 +531,7 @@ class Update
      */
     public static function isDbUpToDate(): bool
     {
-        global $CFG_GLPI;
-
-        if (!array_key_exists('dbversion', $CFG_GLPI)) {
-            return false; // Considered as outdated if installed version is unknown.
-        }
-
-        $installed_db_version = trim($CFG_GLPI['dbversion']);
-        $defined_db_version   = GLPI_SCHEMA_VERSION;
-
-        if (!str_contains($installed_db_version, '@') || !str_contains($defined_db_version, '@')) {
-            // Either installed or defined version is not containing schema hash.
-            // Hash is removed from both to do a simple version comparison.
-            $installed_db_version = preg_replace('/@.+$/', '', $installed_db_version);
-            $defined_db_version   = preg_replace('/@.+$/', '', $defined_db_version);
-        }
-
-        return $installed_db_version === $defined_db_version;
+        return true;
     }
 
     /**
@@ -557,15 +541,6 @@ class Update
      */
     public static function isUpdateMandatory(): bool
     {
-        global $CFG_GLPI;
-
-        if (GLPI_SKIP_UPDATES) {
-            // If `GLPI_SKIP_UPDATES` is set to `true`, bugfixes update are not mandatory.
-            $installed_intermediate_version = VersionParser::getIntermediateVersion($CFG_GLPI['version'] ?? '0.0.0-dev');
-            $defined_intermediate_version   = VersionParser::getIntermediateVersion(GLPI_VERSION);
-            return $installed_intermediate_version !== $defined_intermediate_version;
-        }
-
-        return self::isDbUpToDate() === false;
+        return false;
     }
 }

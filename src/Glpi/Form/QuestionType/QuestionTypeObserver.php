@@ -69,6 +69,18 @@ final class QuestionTypeObserver extends AbstractQuestionTypeActors
     }
 
     #[Override]
+    public function getRightForUsers(): string
+    {
+        // Restrict observer list for self-service (helpdesk) users:
+        // they can only see users in their own groups + users with the Manager profile
+        if (Session::getCurrentInterface() === 'helpdesk') {
+            return 'observer_selfservice';
+        }
+
+        return 'all';
+    }
+
+    #[Override]
     public function getGroupConditions(): array
     {
         return ['is_watcher' => 1];

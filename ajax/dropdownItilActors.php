@@ -61,6 +61,11 @@ if (
                         $right = 'id';
                     }
                 }
+                
+                // Restrict observer dropdown to own groups + managers for self-service users
+                if ($_POST["actortype"] == 'observer' && Session::getCurrentInterface() == "helpdesk") {
+                    $right = 'observer_selfservice';
+                }
 
                 $options = [
                     'name'        => '_itil_' . $_POST["actortype"] . '[users_id]',

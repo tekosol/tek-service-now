@@ -6,3 +6,10 @@
 /.vs/tek-service-now/FileContentIndex
 /.vs
 /files
+
+# Log and session folders
+files/_log/
+files/_sessions/
+
+# Or ignore all log files
+*.log
